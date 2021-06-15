@@ -1,0 +1,507 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Patient_Intake" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:p1="http://schemas.uipath.com/workflow/activities/ocr" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Input_DataTable" Type="InArgument(sd:DataTable)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="row number" Name="counter" Type="InArgument(x:Int32)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1319,2558</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Patient_Intake_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="40">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.Shared.ObjectLibrary</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="74">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="To enter the desired service line." DisplayName="Patient Intake" sap:VirtualizedContainerService.HintSize="953,2493" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="911,2370" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence DisplayName="Patient_Intake" sap:VirtualizedContainerService.HintSize="873,2143" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="831,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Patient Intake started&quot;]" />
+          <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" ApiKey="RuOFwAqoJ21ubRvWCkA2dnK3ASHCtdf50fLACYjdLck+qO3FE5xyG4np5jcvOm6LmnAjZb3Ci4+zG0OVj8nHtg==" CvMethod="ElementDetection, OCR" DesignTimeCacheId="fd125fec-7192-4093-9153-318fc9bd970a" DisplayName="CV Screen Scope 'Patient Intake '" sap:VirtualizedContainerService.HintSize="831,1920" sap2010:WorkflowViewState.IdRef="CVScope_1" Version="V2">
+            <p:CVScope.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Int32" Name="Delay">
+                      <Variable.Default>
+                        <Literal x:TypeArguments="x:Int32" Value="3000" />
+                      </Variable.Default>
+                    </Variable>
+                    <Variable x:TypeArguments="x:Boolean" Name="ifWindowExist" />
+                    <Variable x:TypeArguments="x:Boolean" Name="ifWindowStillExist" />
+                  </Sequence.Variables>
+                  <p:CvElementExistsWithDescriptor sap2010:Annotation.AnnotationText="Checks whether patient intake title exists." Descriptor="[&quot;Target: Text 'Patient' (22,48,87,25)&quot; +&#xA;&quot;Anchor: Text 'Patient Intake' (28,9,75,12)&quot;]" DesignTimeCacheId="fd125fec-7192-4093-9153-318fc9bd970a" DesignTimeScaleFactor="1" DisplayName="Precheck" sap:VirtualizedContainerService.HintSize="797,93" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_1" InformativeScreenshot="63f9b145cb8fe1db002266fca30eccb3" Result="[ifWindowExist]" Version="V2">
+                    <p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
+                      <uc:CvDescriptor>
+                        <uc:CvDescriptor.Anchors>
+                          <x:Array Type="uc:CvElementDescriptor">
+                            <uc:CvElementDescriptor DesignTimeArea="28, 9, 75, 12" ElementType="Text" Text="Patient Intake" />
+                          </x:Array>
+                        </uc:CvDescriptor.Anchors>
+                        <uc:CvDescriptor.Target>
+                          <uc:CvElementDescriptor DesignTimeArea="22, 48, 87, 25" ElementType="Text" Text="Patient" />
+                        </uc:CvDescriptor.Target>
+                      </uc:CvDescriptor>
+                    </p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </p:CvElementExistsWithDescriptor>
+                  <If Condition="[ifWindowExist]" DisplayName="If precheck successfull" sap:VirtualizedContainerService.HintSize="797,796" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Enter details" sap:VirtualizedContainerService.HintSize="376,639" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <p:CvClickWithDescriptor CursorMotionType="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: ArrowButton (262,133,18,19)&quot;]" DesignTimeCacheId="bc2771f1-403a-4abc-992a-f7fbab59298d" DesignTimeScaleFactor="1" DisplayName="CV Click - ArrowButton" sap:VirtualizedContainerService.HintSize="334,136" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_3" InformativeScreenshot="04f69f3235d18707af35fc92ebfbae8d" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V2">
+                          <p:CvClickWithDescriptor.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </p:CvClickWithDescriptor.CursorPosition>
+                          <p:CvClickWithDescriptor.DesignTimeDescriptor>
+                            <uc:CvDescriptor>
+                              <uc:CvDescriptor.Target>
+                                <uc:CvElementDescriptor DesignTimeArea="262, 133, 18, 19" ElementType="ArrowButton" />
+                              </uc:CvDescriptor.Target>
+                            </uc:CvDescriptor>
+                          </p:CvClickWithDescriptor.DesignTimeDescriptor>
+                          <p:CvClickWithDescriptor.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="bfcc008e-d051-41e5-8da2-67465581cbed">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </p:CvClickWithDescriptor.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </p:CvClickWithDescriptor>
+                        <p:CvSelectItemWithDescriptor DeselectAfter="{x:Null}" InRegion="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Enter service line from dropdown" ClickBeforeTyping="True" Descriptor="[&quot;Target: Text '&quot;+Input_DataTable.Rows(counter).Item(&quot;Service Line&quot;).ToString+&quot;' (22,173,61,14)&quot;]" DesignTimeCacheId="bc2771f1-403a-4abc-992a-f7fbab59298d" DesignTimeScaleFactor="1" DisplayName="CV Dropdown Select -Service Line" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="CvSelectItemWithDescriptor_2" InformativeScreenshot="164879e28bba76a417311c0ca0010359" Text="[&quot;&quot;]" Version="V2">
+                          <p:CvSelectItemWithDescriptor.DesignTimeDescriptor>
+                            <uc:CvDescriptor>
+                              <uc:CvDescriptor.Target>
+                                <uc:CvElementDescriptor DesignTimeArea="22, 173, 61, 14" ElementType="Text" Text="HOSPICE" />
+                              </uc:CvDescriptor.Target>
+                            </uc:CvDescriptor>
+                          </p:CvSelectItemWithDescriptor.DesignTimeDescriptor>
+                          <p:CvSelectItemWithDescriptor.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="6c29b432-f8a4-4cf5-8044-caaacb636bd0">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </p:CvSelectItemWithDescriptor.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </p:CvSelectItemWithDescriptor>
+                        <p:CvClickWithDescriptor CursorMotionType="{x:Null}" DelayBefore="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="[Delay]" Descriptor="[&quot;Target: Text 'OK' (238,307,24,16)&quot;]" DesignTimeCacheId="bc2771f1-403a-4abc-992a-f7fbab59298d" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="334,136" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_4" InformativeScreenshot="cce5edff3ecf7c8a2446f36651f73113" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V2">
+                          <p:CvClickWithDescriptor.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </p:CvClickWithDescriptor.CursorPosition>
+                          <p:CvClickWithDescriptor.DesignTimeDescriptor>
+                            <uc:CvDescriptor>
+                              <uc:CvDescriptor.Target>
+                                <uc:CvElementDescriptor DesignTimeArea="238, 307, 24, 16" ElementType="Text" Text="OK" />
+                              </uc:CvDescriptor.Target>
+                            </uc:CvDescriptor>
+                          </p:CvClickWithDescriptor.DesignTimeDescriptor>
+                          <p:CvClickWithDescriptor.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="939a74e4-e99f-451f-8f57-2546395e93a8">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </p:CvClickWithDescriptor.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </p:CvClickWithDescriptor>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Throw Exception" sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Patient Intake screen not found&quot;]" />
+                        <Throw Exception="[new Exception(&quot;Patient Intake screen is not found&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <p:CvElementExistsWithDescriptor sap2010:Annotation.AnnotationText="Checks whether patient intake title exists." DelayBefore="[Delay]" Descriptor="[&quot;Target: Text 'Patient' (22,48,87,25)&quot; +&#xD;&#xA;&quot;Anchor: Text 'Patient Intake' (28,9,75,12)&quot;]" DesignTimeCacheId="fd125fec-7192-4093-9153-318fc9bd970a" DesignTimeScaleFactor="1" DisplayName="Postcheck" sap:VirtualizedContainerService.HintSize="797,167" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_2" InformativeScreenshot="63f9b145cb8fe1db002266fca30eccb3" Result="[ifWindowStillExist]" TimeoutMS="[Delay]" Version="V2">
+                    <p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
+                      <uc:CvDescriptor>
+                        <uc:CvDescriptor.Anchors>
+                          <x:Array Type="uc:CvElementDescriptor">
+                            <uc:CvElementDescriptor DesignTimeArea="28, 9, 75, 12" ElementType="Text" Text="Patient Intake" />
+                          </x:Array>
+                        </uc:CvDescriptor.Anchors>
+                        <uc:CvDescriptor.Target>
+                          <uc:CvElementDescriptor DesignTimeArea="22, 48, 87, 25" ElementType="Text" Text="Patient" />
+                        </uc:CvDescriptor.Target>
+                      </uc:CvDescriptor>
+                    </p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </p:CvElementExistsWithDescriptor>
+                  <If sap2010:Annotation.AnnotationText="If postcheck unsuccessfull i.e patient intake window still exists" Condition="[ifWindowStillExist]" sap:VirtualizedContainerService.HintSize="797,433" sap2010:WorkflowViewState.IdRef="If_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Throw exception" sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;could not load basic info window&quot;]" />
+                        <Throw Exception="[New Exception(&quot;Couldnot load basic info window&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Patient Intake completed.&quot;]" />
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </p:CVScope.Body>
+            <p:CVScope.DesignTimeCache>
+              <uc:CVCache CvUiElements="{x:Null}" OcrTexts="{x:Null}" />
+            </p:CVScope.DesignTimeCache>
+            <p:CVScope.DesignTimeCacheContainer>
+              <uc:CvCacheContainer>
+                <uc:CvCacheContainer.Caches>
+                  <scg:List x:TypeArguments="uc:CVCache" Capacity="2">
+                    <uc:CVCache DisplayName="Main Screen" Id="fd125fec-7192-4093-9153-318fc9bd970a" InformativeScreenshot="13ad552c3f383b2cababfcc4f2e5ebf2" LogicalPosition="735, 238" OcrText="Patient Intake X Patient Intake ServiceLin Patient Type:' New Referral Transition the Patient into HCHB Software Continuity of Care Document (CCD) External Lookup OK Cancel O" Position="735, 238" ScreenshotGuid="6a900324-bf6e-42f4-a69d-f7078c11370a" ServerVersion="1">
+                      <uc:CVCache.CvUiElements>
+                        <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="32">
+                          <uc:CvElementInfo Category="RadioButton" Region="19, 195, 16, 16" />
+                          <uc:CvElementInfo Category="RadioButton" Region="19, 213, 16, 16" />
+                          <uc:CvElementInfo Category="Button" Region="188, 295, 123, 41" />
+                          <uc:CvElementInfo Category="Button" Region="318, 294, 122, 42" />
+                          <uc:CvElementInfo Category="CheckBox" Region="20, 257, 15, 15" />
+                          <uc:CvElementInfo Category="CloseButton" Region="426, 6, 18, 17" />
+                          <uc:CvElementInfo Category="RadioButton" Region="19, 229, 16, 16" />
+                          <uc:CvElementInfo Category="Icon" Region="403, 308, 18, 17" />
+                          <uc:CvElementInfo Category="Icon" Region="7, 6, 19, 18" />
+                          <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="106, 109, 10, 8" />
+                          <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="107, 173, 10, 7" />
+                          <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="7, 6, 19, 18" />
+                          <uc:CvElementInfo Category="CheckBox" Confidence="Runtime" Region="20, 230, 14, 14" />
+                          <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="236, 227, 21, 20" />
+                          <uc:CvElementInfo Category="RadioButton" Confidence="Runtime" Region="402, 307, 18, 19" />
+                          <uc:CvElementInfo Category="RadioButton" Confidence="Runtime" Region="6, 5, 19, 19" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="2, 0, 447, 29" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="448, 284, 2, 20" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="17, 249, 431, 32" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="449, 0, 1, 30" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="448, 272, 3, 47" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="295, 0, 152, 27" />
+                          <uc:CvElementInfo Category="InputBox" Region="21, 131, 259, 24" />
+                          <uc:CvElementInfo Category="ArrowButton" Region="261, 133, 19, 20" />
+                        </scg:List>
+                      </uc:CVCache.CvUiElements>
+                      <uc:CVCache.OcrTexts>
+                        <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="32">
+                          <uc:OcrTextInfo Region="28, 9, 40, 12" Text="Patient" />
+                          <uc:OcrTextInfo Region="68, 9, 35, 12" Text="Intake" />
+                          <uc:OcrTextInfo Region="426, 6, 16, 15" Text="X" />
+                          <uc:OcrTextInfo Region="22, 48, 87, 25" Text="Patient" />
+                          <uc:OcrTextInfo Region="112, 49, 76, 24" Text="Intake" />
+                          <uc:OcrTextInfo Region="23, 110, 74, 14" Text="ServiceLin" />
+                          <uc:OcrTextInfo Region="22, 174, 49, 14" Text="Patient" />
+                          <uc:OcrTextInfo Region="71, 173, 43, 19" Text="Type:'" />
+                          <uc:OcrTextInfo Region="34, 195, 28, 14" Text="New" />
+                          <uc:OcrTextInfo Region="62, 195, 48, 14" Text="Referral" />
+                          <uc:OcrTextInfo Region="34, 212, 60, 15" Text="Transition" />
+                          <uc:OcrTextInfo Region="95, 212, 20, 14" Text="the" />
+                          <uc:OcrTextInfo Region="117, 213, 44, 13" Text="Patient" />
+                          <uc:OcrTextInfo Region="161, 213, 24, 14" Text="into" />
+                          <uc:OcrTextInfo Region="186, 212, 38, 14" Text="HCHB" />
+                          <uc:OcrTextInfo Region="227, 212, 53, 15" Text="Software" />
+                          <uc:OcrTextInfo Region="33, 229, 61, 16" Text="Continuity" />
+                          <uc:OcrTextInfo Region="95, 230, 15, 13" Text="of" />
+                          <uc:OcrTextInfo Region="111, 229, 30, 14" Text="Care" />
+                          <uc:OcrTextInfo Region="142, 229, 62, 14" Text="Document" />
+                          <uc:OcrTextInfo Region="206, 229, 36, 16" Text="(CCD)" />
+                          <uc:OcrTextInfo Region="38, 257, 51, 15" Text="External" />
+                          <uc:OcrTextInfo Region="90, 258, 44, 16" Text="Lookup" />
+                          <uc:OcrTextInfo Region="238, 307, 24, 16" Text="OK" />
+                          <uc:OcrTextInfo Region="347, 308, 49, 14" Text="Cancel" />
+                          <uc:OcrTextInfo Region="403, 307, 17, 16" Text="O" />
+                        </scg:List>
+                      </uc:CVCache.OcrTexts>
+                    </uc:CVCache>
+                    <uc:CVCache DisplayName="Screen CV Click - 'HOME HEALTH" Id="bc2771f1-403a-4abc-992a-f7fbab59298d" InformativeScreenshot="4ce7c294bf7f4011cf6c3bfe72461067" LogicalPosition="735, 238" OcrText="Patient Intake X Patient Intake ServiceL Line:* HOME HEALTH HOSPICE PCH-PALLIATIVE PRIVATE DUTY Continuity of Care Document (CCD) External Lookup OK Cancel O" Position="735, 238" ScreenshotGuid="a350a3a9-3718-4399-876e-53c859e69591" ServerVersion="1">
+                      <uc:CVCache.CvUiElements>
+                        <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="32">
+                          <uc:CvElementInfo Category="Button" Region="189, 295, 121, 42" />
+                          <uc:CvElementInfo Category="Button" Region="318, 294, 122, 42" />
+                          <uc:CvElementInfo Category="CheckBox" Region="20, 257, 15, 15" />
+                          <uc:CvElementInfo Category="CloseButton" Region="426, 6, 18, 17" />
+                          <uc:CvElementInfo Category="Icon" Region="403, 308, 17, 17" />
+                          <uc:CvElementInfo Category="RadioButton" Region="19, 230, 16, 16" />
+                          <uc:CvElementInfo Category="Icon" Region="7, 6, 19, 18" />
+                          <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="107, 110, 9, 7" />
+                          <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="25, 153, 261, 20" />
+                          <uc:CvElementInfo Category="CheckBox" Confidence="Runtime" Region="20, 230, 15, 15" />
+                          <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="23, 159, 261, 68" />
+                          <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="7, 6, 19, 18" />
+                          <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="106, 108, 12, 11" />
+                          <uc:CvElementInfo Category="RadioButton" Confidence="Runtime" Region="402, 307, 18, 19" />
+                          <uc:CvElementInfo Category="RadioButton" Confidence="Runtime" Region="6, 5, 19, 19" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="2, 0, 447, 29" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="35, 223, 228, 23" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="21, 211, 257, 20" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="22, 129, 254, 22" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="448, 284, 2, 20" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="315, 292, 129, 45" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="449, 0, 1, 30" />
+                          <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="296, 0, 151, 27" />
+                          <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="28, 131, 252, 22" />
+                          <uc:CvElementInfo Category="ArrowButton" Region="262, 133, 18, 19" />
+                        </scg:List>
+                      </uc:CVCache.CvUiElements>
+                      <uc:CVCache.OcrTexts>
+                        <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="32">
+                          <uc:OcrTextInfo Region="28, 9, 40, 12" Text="Patient" />
+                          <uc:OcrTextInfo Region="68, 9, 35, 12" Text="Intake" />
+                          <uc:OcrTextInfo Region="426, 6, 16, 15" Text="X" />
+                          <uc:OcrTextInfo Region="22, 48, 87, 25" Text="Patient" />
+                          <uc:OcrTextInfo Region="112, 49, 76, 24" Text="Intake" />
+                          <uc:OcrTextInfo Region="22, 111, 62, 13" Text="ServiceL" />
+                          <uc:OcrTextInfo Region="75, 109, 39, 16" Text="Line:*" />
+                          <uc:OcrTextInfo Region="23, 156, 40, 14" Text="HOME" />
+                          <uc:OcrTextInfo Region="64, 156, 53, 13" Text="HEALTH" />
+                          <uc:OcrTextInfo Region="22, 173, 61, 14" Text="HOSPICE" />
+                          <uc:OcrTextInfo Region="23, 190, 107, 14" Text="PCH-PALLIATIVE" />
+                          <uc:OcrTextInfo Region="22, 207, 59, 14" Text="PRIVATE" />
+                          <uc:OcrTextInfo Region="83, 208, 37, 14" Text="DUTY" />
+                          <uc:OcrTextInfo Region="33, 229, 62, 17" Text="Continuity" />
+                          <uc:OcrTextInfo Region="96, 230, 14, 13" Text="of" />
+                          <uc:OcrTextInfo Region="111, 229, 30, 14" Text="Care" />
+                          <uc:OcrTextInfo Region="142, 230, 62, 13" Text="Document" />
+                          <uc:OcrTextInfo Region="205, 228, 37, 18" Text="(CCD)" />
+                          <uc:OcrTextInfo Region="38, 257, 51, 15" Text="External" />
+                          <uc:OcrTextInfo Region="90, 258, 43, 16" Text="Lookup" />
+                          <uc:OcrTextInfo Region="238, 307, 24, 16" Text="OK" />
+                          <uc:OcrTextInfo Region="347, 307, 49, 15" Text="Cancel" />
+                          <uc:OcrTextInfo Region="403, 307, 17, 16" Text="O" />
+                        </scg:List>
+                      </uc:CVCache.OcrTexts>
+                    </uc:CVCache>
+                  </scg:List>
+                </uc:CvCacheContainer.Caches>
+              </uc:CvCacheContainer>
+            </p:CVScope.DesignTimeCacheContainer>
+            <p:CVScope.OCREngine>
+              <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                <ActivityFunc.Argument>
+                  <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+                </ActivityFunc.Argument>
+                <p1:UiPathScreenOCR Endpoint="{x:Null}" Output="{x:Null}" Text="{x:Null}" ApiKey="RuOFwAqoJ21ubRvWCkA2dnK3ASHCtdf50fLACYjdLck+qO3FE5xyG4np5jcvOm6LmnAjZb3Ci4+zG0OVj8nHtg==" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_1" Image="[Image]" Language="en" Profile="Screen" Scale="1" />
+              </ActivityFunc>
+            </p:CVScope.OCREngine>
+            <p:CVScope.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="868e4ea3-0247-4af9-8dbd-2765eced78df" InformativeScreenshot="9fe80751b6ae8642d409818bd52cabc4" Selector="&lt;wnd app='wfica32.exe' cls='Transparent Windows Client' title='Patient Intake - \\Remote' /&gt;" WaitForReady="INTERACTIVE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </p:CVScope.Target>
+            <p:CVScope.UseLocalServer>
+              <InArgument x:TypeArguments="x:Boolean" />
+            </p:CVScope.UseLocalServer>
+          </p:CVScope>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="877,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Error" Message="[Exception.message]" />
+              <Rethrow sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
